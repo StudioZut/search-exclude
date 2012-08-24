@@ -1,0 +1,3 @@
+ name = Search Exclude
+ description = Search Exclusions for GW Libraries
+ core = 7.x

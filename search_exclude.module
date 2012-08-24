@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implementation of hook_db_rewrite_sql().
+ */
+ 
+function search_exclude_db_rewrite_sql($query, $primary_table, $primary_field, $args) {
+  // Exclude the following content types from the search results
+  $excluded_content_types = array('content_editing', 'article');
+   
+  if ($query == '' && $primary_table == 'n' && $primary_field == 'nid' && empty($args)) {
+    $where = " n.type NOT IN ('" . implode("', '", $excluded_content_types) . "') ";
+    return array('where' => $where);
+  }
+}
